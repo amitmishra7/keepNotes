@@ -32,7 +32,7 @@ Place the below dependencies in your `pubspec.yaml` file and run `flutter pub ge
 
 Create the model class we need to store and extract data from the databse as `note.dart`.
 
-```
+```dart
 class Note {
   int id;
   String title;
@@ -62,7 +62,7 @@ class Note {
 
 We are going to create an AppDatabase class to hold all of the database opening logic. One more thing about a database being opened - it needs to happen only once. For that reason,  AppDatabase class will be a singleton - a class with only a single instance. Singleton is a design pattern which makes sure we can very simply access an instance of a class, while ensuring that there can be only one instance of a given type.
 
-```
+```dart
 import 'dart:async';
 
 import 'package:path/path.dart';
@@ -98,7 +98,7 @@ class AppDatabase {
 
 Now that we have the core low-level AppDatabase class which is a singleton used to get the single opened instance of a SEMBAST database and we also have a Note model class, we can finally write functions responsible for inserting, updating, deleting and getting data from the database. By convention, such classes are called Data Access Objects or shortly Dao.
 
-```
+```dart
 import 'package:keep_notes/model/note.dart';
 import 'package:sembast/sembast.dart';
 import 'app_database.dart';
@@ -154,7 +154,7 @@ Currently, we have the model layer finished - we can read and write to the SEMBA
 While in this tutorial we are surely not going to move away from SEMBAST, in a real project it's more than expected that sooner or later you will perform some drastic changes to how your app is wired. You might want to store data on a remote server, for instance.
 This is the reason for adding a middleman between the UI and the model layer. We are going to use arguably the best state management library out there and that is BLoC.
 
-```
+```dart
  import 'dart:async';
 import 'package:keep_notes/databse/notes_dao.dart';
 import 'package:keep_notes/model/note.dart';
@@ -201,7 +201,7 @@ class NotesBloc {
 
 For creating the home page UI we have used `ListView.separated` to render list and `StaggeredGridView` to view the items in a grid view.
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:keep_notes/bloc/blocs.dart';
